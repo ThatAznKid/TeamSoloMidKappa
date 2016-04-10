@@ -28,25 +28,36 @@ public class Magpie2
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public String getResponse(String statement)
+	public String getResponse(String statementt)
 	{
-		String response = "";
-		if (statement.indexOf("no") >= 0)
+	    String statement = statementt.trim();
+	    String response = "";
+	    if (statement.length() == 0) { 
+	        return "Say something please."; 
+	    }
+	    if (statement.indexOf("no") >= 0)
 		{
-			response = "Why so negative?";
+		    response = "Why so negative?";
 		}
-		else if (statement.indexOf("mother") >= 0
-				|| statement.indexOf("father") >= 0
-				|| statement.indexOf("sister") >= 0
-				|| statement.indexOf("brother") >= 0)
+	    else if (statement.indexOf("mother") >= 0
+		     || statement.indexOf("father") >= 0
+		     || statement.indexOf("sister") >= 0
+		     || statement.indexOf("brother") >= 0)
 		{
-			response = "Tell me more about your family.";
+		    response = "Tell me more about your family.";
 		}
-		else
+	    else if (statement.indexOf("Mr.Brown") >= 0) { 
+		response = "He seems like a great teacher and person."; 
+	    } 
+	    else if (statement.indexOf("cat") >= 0 
+		     || statement.indexOf("dog") >= 0) { 
+		response = "Tell me more about your pets."; 
+	    }
+	    else
 		{
-			response = getRandomResponse();
+		    response = getRandomResponse();
 		}
-		return response;
+	    return response;
 	}
 
 	/**
